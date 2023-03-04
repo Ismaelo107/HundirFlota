@@ -38,36 +38,42 @@ public class Tablero {
         Random rn = new Random();
         int ran = rn.nextInt(11), ran2 = rn.nextInt(11);
 
+        try {
 
-        if (posicioVH() != 0) {
-            // this.setTablero(tablero[i][ran]);
-            for (int i = 0; i < tablero.length; i++) {
-                for (int j = 0; j < tablero.length; j++) {
-                    for (int k = 0; k < b.getTamanio(); k++) {
-                        int posH = ran + k;
-                        if (k < 10) {
-                            tablero[ran][ran2] = b.getTamanio();
-                            tablero[posH][ran2] = b.getTamanio();
+
+            if (posicioVH() != 0) {
+
+                for (int i = 0; i < tablero.length; i++) {
+                    for (int j = 0; j < tablero.length; j++) {
+                        for (int k = 0; k < b.getTamanio(); k++) {
+                            if (k + ran < 10) {
+                                if (ran + k < 10) {
+                                    tablero[ran][ran2] = b.getTamanio();
+                                    tablero[ran + k][ran2] = b.getTamanio();
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                for (int i = 0; i < tablero.length; i++) {
+                    for (int j = 0; j < tablero.length; j++) {
+                        for (int k = 0; k < b.getTamanio(); k++) {
+                            if (k + ran2 < 10) {
+                                tablero[ran][ran2] = b.getTamanio();
+                                tablero[ran][ran2 + k] = b.getTamanio();
+                            }
+
                         }
                     }
                 }
             }
-        } else {
-            // this.setTablero(tablero[i][ran]);
-            for (int i = 0; i < tablero.length; i++) {
-                for (int j = 0; j < tablero.length; j++) {
-                    for (int k = 0; k < b.getTamanio(); k++) {
-                        int posV = ran2 + k;
-                        if (k < 10) {
-                            tablero[ran][ran2] = b.getTamanio();
-                            tablero[ran][posV] = b.getTamanio();
-                        }
-                    }
-                }
-            }
+            System.out.println(b.toString() + "(" + ran + "," + ran2 + ")");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("SE SALE");
         }
-        System.out.println(b.toString() + "(" + ran + "," + ran2 + ")");
     }
+
 
     public int posicioVH() {
         Random rn = new Random();
